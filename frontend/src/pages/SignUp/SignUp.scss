@@ -1,9 +1,12 @@
 .signUpWrapper {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 110px);
-  padding: 55px;
+  margin: 55px;
+  border: 3px solid var(--primary-color);
+  border-radius: 10px;
 
   .signUp {
     display: grid;

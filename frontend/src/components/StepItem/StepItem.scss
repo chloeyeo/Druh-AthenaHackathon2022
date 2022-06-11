@@ -1,0 +1,33 @@
+.stepItemWrapper {
+  display: grid;
+  place-content: center;
+
+  .stepItem {
+    border: 1px solid var(--primary-color);
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    display: grid;
+    place-content: center;
+    margin: 0 auto;
+
+    &.active {
+      background-color: var(--primary-color);
+    }
+
+    span {
+      font-size: 24px;
+    }
+  }
+
+  p {
+    font-size: 10px;
+    text-align: center;
+
+    &.active {
+      font-weight: bold;
+      border-bottom: 1px solid black;
+      padding-bottom: 5px;
+    }
+  }
+}
