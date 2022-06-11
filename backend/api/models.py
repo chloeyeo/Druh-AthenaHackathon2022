@@ -97,3 +97,24 @@ class Children(db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
+
+    
+    @classmethod
+    def get_by_id(cls, id):
+        return cls.query.get_or_404(id)
+
+    @classmethod
+    def get_by_fullname(cls, fullname):
+        return cls.query.filter_by(fullname=fullname).first()
+
+    def toDICT(self):
+
+        cls_dict = {}
+        cls_dict['_id'] = self.id
+        cls_dict['fullname'] = self.fullname
+
+        return cls_dict
+
+    def toJSON(self):
+
+        return self.toDICT()
