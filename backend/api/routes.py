@@ -211,3 +211,34 @@ def get_friend_list():
 
     db.close()
     return jsonify(rows)
+
+
+@rest_api.route('/api/update-user',methods=['POST'])
+def update_parent():
+    fullname=request.form.get('fullname')
+    location=request.form.get('location')
+    number_of_children=request.form.get('n_of_child')
+    with sqlite3.connect(db_path) as db: # ??
+        cursor=db.cursor()
+    #location_id=cursor.execute("select loc_id from m_location where location_name=?",(location))
+    cursor.execute("UPDATE users (fullname,location,n_of_child) values(?,?,?)",(fullname,location,n_of_child))
+    db.commit()
+    db.close()
+    return jsonify({"status":"success"})
+	# parent - update fullname, location, number of children
+
+@rest_api.route('/api/add-child',methods=['POST'])
+def add_child():
+    fullname=request.form.get('fullname')
+    age=request.form.get('age')
+    gender=request.form.get('gender')
+    english=request.form.get('english')
+    
+    with sqlite3.connect(db_path) as db:
+        cursor=db.cursor()
+    
+    cursor.execute("INSERT INTO children (fullname, age, gender, english) values(?,?,?,?)",(fullname, age, gender, english))
+    db.commit()
+    db.close()
+    return jsonify({"status":"success"})
+    # add child form - fullname, age, gender, canSpeakEng checkbox.
