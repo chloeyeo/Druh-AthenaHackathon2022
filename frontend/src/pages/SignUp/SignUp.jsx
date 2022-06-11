@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import image from "../../assets/images/connect.svg";
+import LanguageDropdown from "../../components/LanguageDropdown/LanguageDropdown";
 
 const SignUp = () => {
   const {
@@ -43,6 +44,7 @@ const SignUp = () => {
   console.log(isDirty);
   return (
     <div className="signUpWrapper">
+      <LanguageDropdown />
       <form className="signUp" onSubmit={submitUserData}>
         <h1>Sign up</h1>
         <div className="item">

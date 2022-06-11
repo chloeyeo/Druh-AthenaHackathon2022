@@ -1,0 +1,34 @@
+.languageDropdown {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  button {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    img {
+      width: 36px;
+    }
+
+    &:hover,
+    &:focus {
+      cursor: pointer;
+      outline: 1px solid grey;
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      & + li {
+        margin-top: 10px;
+      }
+    }
+  }
+}

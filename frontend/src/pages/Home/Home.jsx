@@ -1,8 +1,8 @@
 import React from "react";
-import "./LanguageForm.scss";
+import "./Home.scss";
 import { Link } from "react-router-dom";
 
-const LanguageForm = () => {
+const Home = () => {
   return (
     <form className="languageForm">
       <ul>
@@ -26,4 +26,4 @@ const LanguageForm = () => {
   );
 };
 
-export default LanguageForm;
+export default Home;

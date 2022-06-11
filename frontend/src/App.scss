@@ -2,10 +2,6 @@
 
 $primaryColor: #ffb522;
 
-.App {
-  min-height: 100vh;
-}
-
 .button {
   background-color: $primaryColor;
   color: white;
@@ -14,6 +10,7 @@ $primaryColor: #ffb522;
   border-radius: 4px;
   transition: background-color 0.3s ease-in-out;
   font-size: 16px;
+  text-decoration: none;
 
   &:hover {
     cursor: pointer;
@@ -21,7 +18,7 @@ $primaryColor: #ffb522;
   }
 }
 
-a {
+a:not(.button) {
   color: $primaryColor;
   transition: color 0.3s ease-in-out;
 
