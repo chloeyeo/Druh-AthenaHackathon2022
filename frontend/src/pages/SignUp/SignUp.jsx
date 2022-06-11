@@ -25,7 +25,7 @@ const SignUp = () => {
 
     // need to add api call to server here
     axios
-      .post("/", {
+      .post("http://localhost:5000/api/users/register", {
         username: username,
         email: email,
         password: password,
