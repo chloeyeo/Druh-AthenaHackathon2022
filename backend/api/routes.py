@@ -7,16 +7,21 @@ from datetime import datetime, timezone, timedelta
 
 from functools import wraps
 
-from flask import request
+from flask import request,jsonify
 from flask_restx import Api, Resource, fields
 
 import jwt
+import os
+import sqlite3
 
 from .models import db, Users, JWTTokenBlocklist
 from .config import BaseConfig
 
 rest_api = Api(version="1.0", title="Users API")
 
+
+path = os.path.dirname(os.path.abspath(__file__))
+db_path = os.path.join(path, 'psdproj.db')
 
 """
     Flask-Restx models for api request and response data
@@ -192,3 +197,17 @@ class LogoutUser(Resource):
         self.save()
 
         return {"success": True}, 200
+
+
+@rest_api.route('/api/friend-list')
+def get_friend_list():
+    #location=request.form.get('bike_id')
+
+    with sqlite3.connect(db_path) as db:
+        cursor=db.cursor()
+
+    cursor.execute('SELECT * FROM children')
+    rows = cursor.fetchall()
+
+    db.close()
+    return jsonify(rows)
