@@ -19,6 +19,9 @@ class Users(db.Model):
     email = db.Column(db.String(64), nullable=False)
     password = db.Column(db.Text())
     jwt_auth_active = db.Column(db.Boolean())
+    fullname = db.Column(db.Text())
+    location = db.Column(db.Integer())
+    n_of_child = db.Column(db.Integer())
     date_joined = db.Column(db.DateTime(), default=datetime.utcnow)
 
     def __repr__(self):
@@ -72,6 +75,21 @@ class JWTTokenBlocklist(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     jwt_token = db.Column(db.String(), nullable=False)
     created_at = db.Column(db.DateTime(), nullable=False)
+
+    def __repr__(self):
+        return f"Expired Token: {self.jwt_token}"
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+class Children(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    parent_id = db.Column(db.Integer())
+    fullname = fullname = db.Column(db.Text())
+    age = db.Column(db.Integer())
+    gender = db.Column(db.Integer())
+    english = db.Column(db.Integer())
 
     def __repr__(self):
         return f"Expired Token: {self.jwt_token}"
