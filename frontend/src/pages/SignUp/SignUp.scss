@@ -1,23 +1,64 @@
-.signUp {
-  display: grid;
-  place-content: center;
-  min-height: 100vh;
+.signUpWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 110px);
+  padding: 55px;
 
-  .item {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  .signUp {
+    display: grid;
+    place-content: center;
+    flex-basis: 50%;
 
-    & + .item {
-      margin-top: 30px;
+    h1 {
+      margin-bottom: 50px;
+      font-size: 48px;
     }
 
-    input {
-      padding: 5px 10px;
+    .item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      position: relative;
+
+      & + .item {
+        margin-top: 50px;
+      }
+
+      label {
+        position: absolute;
+        font-size: 18px;
+        top: -12px;
+        background-color: white;
+        left: 50px;
+        padding: 0 15px;
+      }
+
+      input {
+        padding: 15px 20px;
+        min-width: 380px;
+        border: 1px solid var(--primary-color);
+        border-radius: 4px;
+      }
+    }
+
+    button {
+      width: fit-content;
+      margin: 50px auto 20px auto;
+    }
+
+    .loginText {
+      text-align: center;
     }
   }
 
-  button {
-    margin-top: 30px;
+  .image {
+    flex-basis: 50%;
+    display: grid;
+    place-content: center;
+
+    img {
+      min-width: 520px;
+    }
   }
 }

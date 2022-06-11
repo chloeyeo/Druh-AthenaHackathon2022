@@ -1,7 +1,8 @@
 .languageForm {
   display: grid;
   place-content: center;
-  min-height: 100vh;
+  min-height: calc(100vh - 110px);
+  padding: 55px;
 
   ul {
     list-style: none;

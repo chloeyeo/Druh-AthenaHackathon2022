@@ -1,18 +1,32 @@
+@use "sass:color";
+
+$primaryColor: #ffb522;
+
 .App {
-  text-align: center;
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.button {
+  background-color: $primaryColor;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease-in-out;
+  font-size: 16px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: darken($primaryColor, 10);
+  }
+}
+
+a {
+  color: $primaryColor;
+  transition: color 0.3s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    color: darken($primaryColor, 10);
+  }
 }

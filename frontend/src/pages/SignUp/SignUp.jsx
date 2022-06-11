@@ -3,6 +3,7 @@ import "./SignUp.scss";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import image from "../../assets/images/connect.svg";
 
 const SignUp = () => {
   const {
@@ -41,51 +42,66 @@ const SignUp = () => {
 
   console.log(isDirty);
   return (
-    <form className="signUp" onSubmit={submitUserData}>
-      <div className="item">
-        <label htmlFor="username">username</label>
-        <input
-          id="username"
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-      </div>
-      <div className="item">
-        <label htmlFor="email">email</label>
-        <input
-          id="email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </div>
-      <div className="item">
-        <label htmlFor="password">password</label>
-        <input
-          id="password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </div>
-      <div className="item">
-        <label htmlFor="confirmPassword">confirm password</label>
-        <input
-          id="confirmPassword"
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          required
-        />
-      </div>
+    <div className="signUpWrapper">
+      <form className="signUp" onSubmit={submitUserData}>
+        <h1>Sign up</h1>
+        <div className="item">
+          <label htmlFor="username">username</label>
+          <input
+            id="username"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="janedoe91"
+            required
+          />
+        </div>
+        <div className="item">
+          <label htmlFor="email">email</label>
+          <input
+            id="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="janedoe91@hotmail.com"
+            required
+          />
+        </div>
+        <div className="item">
+          <label htmlFor="password">password</label>
+          <input
+            id="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <div className="item">
+          <label htmlFor="confirmPassword">confirm password</label>
+          <input
+            id="confirmPassword"
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+        </div>
 
-      {isPostSuccess ? <h1>Success</h1> : <h1>Fail</h1>}
-      <button type="submit">Sign up</button>
-    </form>
+        {/* {isPostSuccess ? <h1>Success</h1> : <h1>Fail</h1>} */}
+        <button type="submit" className="button">
+          Sign up
+        </button>
+
+        <p className="loginText">
+          already have an account? <Link to="/login">Log in</Link>
+        </p>
+      </form>
+
+      <div className="image">
+        <img src={image} alt="friendship" />
+      </div>
+    </div>
   );
 };
 
