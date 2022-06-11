@@ -19,6 +19,9 @@ class Users(db.Model):
     email = db.Column(db.String(64), nullable=False)
     password = db.Column(db.Text())
     jwt_auth_active = db.Column(db.Boolean())
+    fullname = db.Column(db.Text())
+    location = db.Column(db.Integer())
+    n_of_child = db.Column(db.Integer())
     date_joined = db.Column(db.DateTime(), default=datetime.utcnow)
 
     def __repr__(self):
@@ -79,3 +82,39 @@ class JWTTokenBlocklist(db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
+
+class Children(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    parent_id = db.Column(db.Integer())
+    fullname = fullname = db.Column(db.Text())
+    age = db.Column(db.Integer())
+    gender = db.Column(db.Integer())
+    english = db.Column(db.Integer())
+
+    def __repr__(self):
+        return f"Expired Token: {self.jwt_token}"
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    
+    @classmethod
+    def get_by_id(cls, id):
+        return cls.query.get_or_404(id)
+
+    @classmethod
+    def get_by_fullname(cls, fullname):
+        return cls.query.filter_by(fullname=fullname).first()
+
+    def toDICT(self):
+
+        cls_dict = {}
+        cls_dict['_id'] = self.id
+        cls_dict['fullname'] = self.fullname
+
+        return cls_dict
+
+    def toJSON(self):
+
+        return self.toDICT()
