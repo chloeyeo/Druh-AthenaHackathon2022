@@ -1,6 +1,7 @@
 import React from "react";
 import Profile from "../../components/Profile/Profile";
 import { Link } from "react-router-dom";
+import "./StepOne.scss";
 
 const StepOne = () => {
   return (
@@ -15,19 +16,21 @@ const StepOne = () => {
           </select>
         </div>
         <div className="item">
-          <label htmlFor="firstName">First name: </label>
-          <input type="text" id="firstName" />
+          <label htmlFor="fullName">Full name: </label>
+          <input type="text" id="fullName" />
         </div>
         <div className="item">
-          <label htmlFor="lastName">Last name: </label>
-          <input type="text" id="lastName" />
+          <label htmlFor="location">Location: </label>
+          <input type="text" id="location" />
         </div>
-        <label htmlFor="noOfChildren">No. of children: </label>
-        <select id="noOfChildren" name="noOfChildren">
-          {[...Array(11).keys()].map((i) => (
-            <option value={i}>{i}</option>
-          ))}
-        </select>
+        <div className="item">
+          <label htmlFor="noOfChildren">No. of children: </label>
+          <select id="noOfChildren" name="noOfChildren">
+            {[...Array(11).keys()].map((i) => (
+              <option value={i}>{i}</option>
+            ))}
+          </select>
+        </div>
 
         <Link className="button" to="/step-2">
           Next

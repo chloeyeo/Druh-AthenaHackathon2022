@@ -1,28 +1,23 @@
 import React, { useState } from "react";
 import "./SignUp.scss";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
-import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import image from "../../assets/images/connect.svg";
 import LanguageDropdown from "../../components/LanguageDropdown/LanguageDropdown";
 
 const SignUp = () => {
-  const {
-    formState: { isDirty },
-  } = useForm({
-    mode: "onChange",
-  });
-
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isError, setIsError] = useState(false);
+  const navigate = useNavigate();
 
-  const [isPostSuccess, setIsPostSuccess] = useState(false);
-
-  const submitUserData = () => {
+  const submitUserData = (e) => {
     console.log("submitting");
     console.log(username);
+    e.preventDefault();
 
     // need to add api call to server here
     axios
@@ -33,15 +28,17 @@ const SignUp = () => {
       })
       .then(function (response) {
         console.log(response);
-        setIsPostSuccess(true);
+        if (response.status === 200) {
+          navigate("/step-1", { replace: true });
+        } else {
+          setIsError(true);
+        }
       })
       .catch(function (error) {
         console.log(error);
-        setIsPostSuccess(false);
       });
   };
 
-  console.log(isDirty);
   return (
     <div className="signUpWrapper">
       <LanguageDropdown />
@@ -90,10 +87,16 @@ const SignUp = () => {
           />
         </div>
 
-        {/* {isPostSuccess ? <h1>Success</h1> : <h1>Fail</h1>} */}
-        <button type="submit" className="button">
+        <button
+          className="button"
+          type="submit"
+          onClick={(event) => submitUserData(event)}>
           Sign up
         </button>
+
+        {isError && (
+          <p className="error">There has been an error, please try again</p>
+        )}
 
         <p className="loginText">
           already have an account? <Link to="/login">Log in</Link>

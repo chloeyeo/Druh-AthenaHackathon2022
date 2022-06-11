@@ -1,0 +1,31 @@
+.step1Form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 80%;
+  margin: 30px auto;
+
+  .item {
+    & + .item {
+      margin-top: 35px;
+    }
+    label {
+      font-size: 20px;
+    }
+
+    input,
+    select {
+      border: 1px solid black;
+      border-radius: 4px;
+      padding: 10px 15px;
+    }
+
+    select {
+      font-size: 20px;
+    }
+  }
+
+  a {
+    width: fit-content;
+  }
+}
