@@ -1,8 +1,32 @@
-.languageForm {
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.leftside {
+  width: 50%;
+  height: calc(100vh - 110px);
   display: grid;
   place-content: center;
-  min-height: calc(100vh - 110px);
-  padding: 55px;
+}
+
+.rightside {
+  width: 50%;
+  height: calc(100vh - 110px);
+  margin: 55px;
+  background-color: var(--primary-color);
+  display: grid;
+  place-content: center;
+  padding: 0 40px;
+
+  p {
+    color: white;
+    font-size: 30px;
+  }
+}
+
+.languageForm {
+  position: relative;
 
   ul {
     list-style: none;
@@ -10,5 +34,27 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    & + li {
+      margin-top: 20px;
+    }
+  }
+
+  img {
+    width: 54px;
+  }
+
+  .primaryButton {
+    background-color: white;
+    padding: 11px 20px;
+    border-radius: 4px;
+    position: absolute;
+    right: 30px;
   }
 }
