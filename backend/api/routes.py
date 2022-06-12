@@ -42,6 +42,8 @@ user_edit_model = rest_api.model('UserEditModel', {"userID": fields.String(requi
                                                    })
 
 
+
+
 """
    Helper function for JWT token required
 """
@@ -200,45 +202,68 @@ class LogoutUser(Resource):
 
 
 @rest_api.route('/api/friend-list')
-def get_friend_list():
-    #location=request.form.get('bike_id')
+class FriendList(Resource):
 
-    with sqlite3.connect(db_path) as db:
-        cursor=db.cursor()
+    @token_required
+    def post(self):
+        #location=request.form.get('bike_id')
 
-    cursor.execute('SELECT * FROM children')
-    rows = cursor.fetchall()
+        with sqlite3.connect(db_path) as db:
+            cursor=db.cursor()
 
-    db.close()
-    return jsonify(rows)
+        cursor.execute('SELECT * FROM children')
+        rows = cursor.fetchall()
+
+        db.close()
+        return jsonify(rows)
 
 
-@rest_api.route('/api/update-user',methods=['POST'])
-def update_parent():
-    fullname=request.form.get('fullname')
-    location=request.form.get('location')
-    number_of_children=request.form.get('n_of_child')
-    with sqlite3.connect(db_path) as db: # ??
-        cursor=db.cursor()
-    #location_id=cursor.execute("select loc_id from m_location where location_name=?",(location))
-    cursor.execute("UPDATE users (fullname,location,n_of_child) values(?,?,?)",(fullname,location,n_of_child))
-    db.commit()
-    db.close()
-    return jsonify({"status":"success"})
-	# parent - update fullname, location, number of children
+@rest_api.route('/api/update-user')
+class UpdateParent(Resource):
 
-@rest_api.route('/api/add-child',methods=['POST'])
-def add_child():
-    fullname=request.form.get('fullname')
-    age=request.form.get('age')
-    gender=request.form.get('gender')
-    english=request.form.get('english')
+    @token_required
+    def post(self,current_user):
+
+        req_data = request.get_json()
+
+        _new_identity = req_data.get("identity")
+        _new_fullname = req_data.get('fullname')
+        _new_location=req_data.get('location')
+        _new_nofchild=req_data.get('n_of_child')
+
+        if _new_identity:
+            self.update_identity(_new_identity)
+
+        if _new_fullname:
+            self.update_fullname(_new_fullname)
+
+        if _new_location:
+            self.update_location(_new_location)
+        
+        if _new_nofchild:
+            self.update_nofchild(_new_nofchild)
+
+        self.save()
+
+        return {"success": True}, 200
+
+
+
+@rest_api.route('/api/add-child')
+class AddChild(Resource):
     
-    with sqlite3.connect(db_path) as db:
-        cursor=db.cursor()
-    
-    cursor.execute("INSERT INTO children (fullname, age, gender, english) values(?,?,?,?)",(fullname, age, gender, english))
-    db.commit()
-    db.close()
-    return jsonify({"status":"success"})
-    # add child form - fullname, age, gender, canSpeakEng checkbox.
+    @token_required
+    def post(self):
+        fullname=request.form.get('fullname')
+        age=request.form.get('age')
+        gender=request.form.get('gender')
+        english=request.form.get('english')
+        
+        with sqlite3.connect(db_path) as db:
+            cursor=db.cursor()
+        
+        cursor.execute("INSERT INTO children (fullname, age, gender, english) values(?,?,?,?)",(fullname, age, gender, english))
+        db.commit()
+        db.close()
+        return jsonify({"status":"success"})
+        # add child form - fullname, age, gender, canSpeakEng checkbox.

@@ -12,6 +12,12 @@ const FindFriends = () => {
       email: "abc@test.com",
       child: { gender: "female", age: 8, speakEnglish: false },
     },
+    {
+      username: "_oksanamoroz",
+      location: "Cardiff",
+      email: "abc@test.com",
+      child: { gender: "female", age: 8, speakEnglish: false },
+    },
   ];
   return (
     <div className="findFriends">

@@ -26,6 +26,8 @@
 
 .dialog {
   padding: 25px;
+  top: 50%;
+  transform: translateY(-50%);
 
   .closeBtn {
     background-color: transparent;
