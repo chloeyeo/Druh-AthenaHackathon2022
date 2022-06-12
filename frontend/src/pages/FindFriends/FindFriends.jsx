@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LanguageDropdown from "../../components/LanguageDropdown/LanguageDropdown";
 import "./FindFriends.scss";
 import mapImage from "../../assets/images/map.png";
 import ProfileListItem from "../../components/ProfileListItem/ProfileListItem";
+import axios from "axios";
 
 const FindFriends = () => {
+  const [profileData, setProfileData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/")
+      .then(function (response) {
+        console.log(response);
+        if (response.status === 200) {
+          console.log(response.data);
+          setProfileData(response.data);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, profileData);
+
   const profiles = [
     {
       username: "_oksanamoroz",

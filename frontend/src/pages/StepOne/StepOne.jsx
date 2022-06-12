@@ -17,8 +17,6 @@ const StepOne = () => {
     console.log("submitting");
     e.preventDefault();
 
-    // need to add api call to server here
-    // TODO: replace api endpoint
     axios
       .post("http://localhost:5000/api/update-user", {
         identity: identity,
@@ -59,6 +57,7 @@ const StepOne = () => {
             id="fullName"
             onChange={(e) => setFullname(e.target.value)}
             value={fullname}
+            required
           />
         </div>
         <div className="item">
@@ -68,6 +67,7 @@ const StepOne = () => {
             id="location"
             onChange={(e) => setLocation(e.target.value)}
             value={location}
+            requi
           />
         </div>
         <div className="item">
