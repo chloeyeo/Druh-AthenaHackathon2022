@@ -1,9 +1,4 @@
 .stepThree {
-  .stepItemWrapper .stepItem.active.line:before {
-    width: 180px;
-    left: -180px;
-  }
-
   .verifyWrapper {
     display: flex;
     flex-direction: column;
@@ -21,6 +16,15 @@
     .button {
       width: fit-content;
       margin: 30px auto 0 auto;
+    }
+
+    p {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    span {
+      margin-top: 30px;
     }
   }
 }
