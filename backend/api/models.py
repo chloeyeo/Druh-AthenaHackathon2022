@@ -22,6 +22,7 @@ class Users(db.Model):
     fullname = db.Column(db.Text())
     location = db.Column(db.Integer())
     n_of_child = db.Column(db.Integer())
+    identity = db.Column(db.String())
     date_joined = db.Column(db.DateTime(), default=datetime.utcnow)
 
     def __repr__(self):
@@ -42,6 +43,18 @@ class Users(db.Model):
 
     def update_username(self, new_username):
         self.username = new_username
+    
+    def update_fullname(self, new_fullname):
+        self.fullname = new_fullname
+    
+    def update_location(self, new_location):
+        self.location = new_location
+
+    def update_nofchild(self, new_n_of_child):
+        self.n_of_child = new_n_of_child
+
+    def update_identity(self, new_identity):
+        self.identity = new_identity
 
     def check_jwt_auth_active(self):
         return self.jwt_auth_active

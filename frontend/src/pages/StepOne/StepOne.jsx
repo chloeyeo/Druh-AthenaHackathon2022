@@ -20,7 +20,7 @@ const StepOne = () => {
     // need to add api call to server here
     // TODO: replace api endpoint
     axios
-      .post("http://localhost:5000/", {
+      .post("http://localhost:5000/api/update-user", {
         identity: identity,
         fullname: fullname,
         location: location,
