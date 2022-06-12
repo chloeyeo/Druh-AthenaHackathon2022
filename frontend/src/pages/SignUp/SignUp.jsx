@@ -42,7 +42,7 @@ const SignUp = () => {
   return (
     <div className="signUpWrapper">
       <LanguageDropdown />
-      <form className="signUp" onSubmit={submitUserData}>
+      <form className="signUp" onSubmit={(e) => submitUserData(e)}>
         <h1>Sign up</h1>
         <div className="item">
           <label htmlFor="username">username</label>
@@ -87,10 +87,7 @@ const SignUp = () => {
           />
         </div>
 
-        <button
-          className="button"
-          type="submit"
-          onClick={(event) => submitUserData(event)}>
+        <button className="button" type="submit">
           Sign up
         </button>
 

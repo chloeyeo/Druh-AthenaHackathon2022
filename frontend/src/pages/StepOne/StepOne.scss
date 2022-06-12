@@ -6,11 +6,16 @@
   margin: 30px auto;
 
   .item {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
     & + .item {
       margin-top: 35px;
     }
     label {
       font-size: 20px;
+      width: 50%;
     }
 
     input,
@@ -18,14 +23,19 @@
       border: 1px solid black;
       border-radius: 4px;
       padding: 10px 15px;
+      width: 200px;
+      justify-self: flex-end;
     }
 
     select {
       font-size: 20px;
+      background-color: transparent;
     }
   }
 
-  a {
+  button {
     width: fit-content;
+    margin-top: 30px;
+    margin-left: auto;
   }
 }

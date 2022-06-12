@@ -24,7 +24,7 @@ const StepsWrapper = (props) => {
 
   return (
     <div className="stepsWrapper">
-      {steps.map((step) => (
+      {steps.map((step, i) => (
         <StepItem
           stepNumber={step.number}
           text={step.text}
@@ -32,12 +32,6 @@ const StepsWrapper = (props) => {
         />
       ))}
     </div>
-    // <>
-    //   <div className={"stepItem" + (props.isActive ? " active" : "")}>
-    //     <span>{props.stepNumber}</span>
-    //   </div>
-    //   <p>{props.text}</p>
-    // </>
   );
 };
 

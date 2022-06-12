@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import Profile from "../../components/Profile/Profile";
-import { Link } from "react-router-dom";
-import "./StepOne.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const StepOne = () => {
+const StepTwo = () => {
   const [identity, setIdentity] = useState("");
   const [fullname, setFullname] = useState("");
   const [location, setLocation] = useState("");
@@ -38,8 +36,8 @@ const StepOne = () => {
   };
 
   return (
-    <Profile activeStep={1}>
-      <form className="step1Form" onSubmit={(e) => submitUserData(e)}>
+    <Profile activeStep={2}>
+      <form className="step1Form">
         <div className="item">
           <label htmlFor="identity">I am a: </label>
           <select
@@ -83,10 +81,12 @@ const StepOne = () => {
           </select>
         </div>
 
-        <button className="button">Next</button>
+        <button className="button" onClick={(e) => submitUserData(e)}>
+          Next
+        </button>
       </form>
     </Profile>
   );
 };
 
-export default StepOne;
+export default StepTwo;
