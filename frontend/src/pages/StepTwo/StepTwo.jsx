@@ -18,13 +18,21 @@ const StepTwo = () => {
 
     // need to add api call to server here
     // TODO: replace api endpoint
+    const token = localStorage.getItem('token')
+    let axiosConfig = {
+      headers: {
+        "authorization" : token
+      }
+    };
+
     axios
-      .post("http://localhost:5000/", {
+      .post("http://localhost:5000/api/add-child", {
         childFullname: childFullname,
         childAge: childAge,
         gender: gender,
         speakEnglish: speakEnglish,
-      })
+      },
+      axiosConfig)
       .then(function (response) {
         console.log(response);
         if (response.status === 200) {
