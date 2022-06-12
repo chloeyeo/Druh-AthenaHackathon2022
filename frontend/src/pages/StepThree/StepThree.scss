@@ -1,0 +1,26 @@
+.stepThree {
+  .stepItemWrapper .stepItem.active.line:before {
+    width: 180px;
+    left: -180px;
+  }
+
+  .verifyWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 80%;
+    margin: 30px auto;
+    text-align: center;
+
+    img {
+      width: 45px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .button {
+      width: fit-content;
+      margin: 30px auto 0 auto;
+    }
+  }
+}

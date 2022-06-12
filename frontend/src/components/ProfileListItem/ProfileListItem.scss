@@ -1,0 +1,67 @@
+.profileListItem {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  width: fit-content;
+  padding: 20px 0;
+  border-bottom: 1px solid black;
+
+  img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .details {
+    span,
+    p {
+      margin: 0;
+    }
+  }
+
+  .button {
+    padding: 10px 17px;
+    height: fit-content;
+  }
+}
+
+.dialog {
+  padding: 25px;
+
+  .closeBtn {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: 10px;
+
+    &:focus {
+      outline: 1px solid black;
+    }
+
+    img {
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  .content {
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contactBtns {
+    display: flex;
+    gap: 20px;
+
+    img {
+      width: 25px;
+      height: 25px;
+    }
+
+    button {
+      background-color: transparent;
+      border: none;
+    }
+  }
+}
