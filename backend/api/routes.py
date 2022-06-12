@@ -14,7 +14,7 @@ import jwt
 import os
 import sqlite3
 
-from .models import db, Users, JWTTokenBlocklist
+from .models import db, Users, JWTTokenBlocklist, Children
 from .config import BaseConfig
 
 rest_api = Api(version="1.0", title="Users API")
@@ -113,10 +113,17 @@ class Register(Resource):
         new_user = Users(username=_username, email=_email)
 
         new_user.set_password(_password)
+        # create access token uwing JWT
+        token = jwt.encode({'email': _email, 'exp': datetime.utcnow() + timedelta(minutes=30)}, BaseConfig.SECRET_KEY)
+
+        new_user.set_jwt_auth_active(True)
+
         new_user.save()
 
         return {"success": True,
                 "userID": new_user.id,
+                "token": token,
+                "user": new_user.toJSON(),
                 "msg": "The user was successfully registered"}, 200
 
 
@@ -253,17 +260,30 @@ class UpdateParent(Resource):
 class AddChild(Resource):
     
     @token_required
-    def post(self):
-        fullname=request.form.get('fullname')
-        age=request.form.get('age')
-        gender=request.form.get('gender')
-        english=request.form.get('english')
+    def post(self,current_user):
+        #fullname=request.form.get('fullname')
+        #age=request.form.get('age')
+        #gender=request.form.get('gender')
+        #english=request.form.get('english')
         
-        with sqlite3.connect(db_path) as db:
-            cursor=db.cursor()
+        #with sqlite3.connect(db_path) as db:
+        #    cursor=db.cursor()
         
-        cursor.execute("INSERT INTO children (fullname, age, gender, english) values(?,?,?,?)",(fullname, age, gender, english))
-        db.commit()
-        db.close()
-        return jsonify({"status":"success"})
+        #cursor.execute("INSERT INTO children (fullname, age, gender, english) values(?,?,?,?)",(fullname, age, gender, english))
+        #db.commit()
+        #db.close()
+        #return jsonify({"status":"success"})
         # add child form - fullname, age, gender, canSpeakEng checkbox.
+        req_data = request.get_json()
+
+        _fullname = req_data.get("fullname")
+        _age = req_data.get("age")
+        _gender = req_data.get("gender")
+        _english = req_data.get("english")
+
+        new_child = Children(parent_id = current_user.get_user_id(), fullname=_fullname, age=_age, gender=_gender, english=_english)
+        
+        new_child.save()
+
+        return {"success": True,
+                "msg": "The child was successfully added"}, 200

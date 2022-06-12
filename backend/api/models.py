@@ -20,7 +20,7 @@ class Users(db.Model):
     password = db.Column(db.Text())
     jwt_auth_active = db.Column(db.Boolean())
     fullname = db.Column(db.Text())
-    location = db.Column(db.Integer())
+    location = db.Column(db.Text())
     n_of_child = db.Column(db.Integer())
     identity = db.Column(db.String())
     date_joined = db.Column(db.DateTime(), default=datetime.utcnow)
@@ -61,6 +61,9 @@ class Users(db.Model):
 
     def set_jwt_auth_active(self, set_status):
         self.jwt_auth_active = set_status
+
+    def get_user_id(self):
+        return self.id
 
     @classmethod
     def get_by_id(cls, id):

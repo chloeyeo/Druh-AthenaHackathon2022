@@ -29,6 +29,8 @@ const SignUp = () => {
       .then(function (response) {
         console.log(response);
         if (response.status === 200) {
+          const token  = response.data.token;
+          localStorage.setItem('token', token);
           navigate("/step-1", { replace: true });
         } else {
           setIsError(true);
