@@ -10,7 +10,9 @@ const FindFriends = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/")
+      .get("http://localhost:5000/api/friend-list",    {    headers: {
+        'Content-Type': 'application/json',
+    },})
       .then(function (response) {
         console.log(response);
         if (response.status === 200) {
@@ -28,13 +30,13 @@ const FindFriends = () => {
       username: "_oksanamoroz",
       location: "Cardiff",
       email: "abc@test.com",
-      child: { gender: "female", age: 8, speakEnglish: false },
+      child: { gender: "female", age: 8 },
     },
     {
       username: "_oksanamoroz",
       location: "Cardiff",
       email: "abc@test.com",
-      child: { gender: "female", age: 8, speakEnglish: false },
+      child: { gender: "female", age: 8 },
     },
   ];
   return (
@@ -50,12 +52,13 @@ const FindFriends = () => {
           <p>Click on a profile to start messaging</p>
 
           {/* fetch profile items and map */}
-          {profiles.map((profile) => (
+          {profileData.map((profile) => (
             <ProfileListItem
-              username={profile.username}
-              location={profile.location}
-              email={profile.email}
-              child={profile.child}
+              username={profile[0]}
+              location={profile[1]}
+              email={profile[2]}
+              gender={profile[3]}
+              age={profile[4]}
             />
           ))}
         </div>

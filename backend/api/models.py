@@ -102,10 +102,10 @@ class JWTTokenBlocklist(db.Model):
 class Children(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     parent_id = db.Column(db.Integer())
-    fullname = fullname = db.Column(db.Text())
+    fullname = db.Column(db.Text())
     age = db.Column(db.Integer())
-    gender = db.Column(db.Integer())
-    english = db.Column(db.Integer())
+    gender = db.Column(db.String())
+    english = db.Column(db.Boolean())
 
     def __repr__(self):
         return f"Expired Token: {self.jwt_token}"

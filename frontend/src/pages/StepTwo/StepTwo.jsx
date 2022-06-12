@@ -8,7 +8,6 @@ const StepTwo = () => {
   const [childFullname, setchildFullname] = useState("");
   const [childAge, setchildAge] = useState(0);
   const [gender, setGender] = useState("");
-  const [speakEnglish, setSpeakEnglish] = useState(true);
 
   const navigate = useNavigate();
 
@@ -18,6 +17,7 @@ const StepTwo = () => {
     // need to add api call to server here
     // TODO: replace api endpoint
     const token = localStorage.getItem('token')
+    const userId = localStorage.getItem('userid')
     let axiosConfig = {
       headers: {
         "authorization" : token
@@ -29,7 +29,7 @@ const StepTwo = () => {
         childFullname: childFullname,
         childAge: childAge,
         gender: gender,
-        speakEnglish: speakEnglish,
+        userid: userId,
       },
       axiosConfig)
       .then(function (response) {
@@ -79,35 +79,7 @@ const StepTwo = () => {
             required
           />
         </div>
-        <div className="item">
-          <label htmlFor="speakEnglish">Can they speak english?: </label>
-          <ul id="speakEnglish">
-            <li>
-              <label htmlFor="yesEnglish">Yes</label>
-              <input
-                type="radio"
-                className="radio"
-                id="yesEnglish"
-                value={speakEnglish}
-                onChange={() => setSpeakEnglish(true)}
-                checked={speakEnglish}
-                required
-              />
-            </li>
-            <li>
-              <label htmlFor="noEnglish">No</label>
-              <input
-                className="radio"
-                type="radio"
-                id="noEnglish"
-                value={!speakEnglish}
-                onChange={() => setSpeakEnglish(false)}
-                checked={!speakEnglish}
-                required
-              />
-            </li>
-          </ul>
-        </div>
+
         {/* functionality for add child needs to be implemented */}
         <button className="addChild">Add child +</button>
         <button className="button">Next</button>

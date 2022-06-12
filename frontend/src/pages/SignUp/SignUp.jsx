@@ -31,6 +31,8 @@ const SignUp = () => {
         if (response.status === 200) {
           const token  = response.data.token;
           localStorage.setItem('token', token);
+          const userid  = response.data.userID;
+          localStorage.setItem('userid', userid);
           navigate("/step-1", { replace: true });
         } else {
           setIsError(true);
@@ -75,6 +77,7 @@ const SignUp = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            minLength="4"
             required
           />
         </div>
@@ -85,6 +88,7 @@ const SignUp = () => {
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            minLength="4"
             required
           />
         </div>

@@ -21,7 +21,7 @@ rest_api = Api(version="1.0", title="Users API")
 
 
 path = os.path.dirname(os.path.abspath(__file__))
-db_path = os.path.join(path, 'psdproj.db')
+db_path = os.path.join(path, 'athena2022.db')
 
 """
     Flask-Restx models for api request and response data
@@ -211,14 +211,14 @@ class LogoutUser(Resource):
 @rest_api.route('/api/friend-list')
 class FriendList(Resource):
 
-    @token_required
-    def post(self):
+    #@token_required
+    def get(self):
         #location=request.form.get('bike_id')
 
         with sqlite3.connect(db_path) as db:
             cursor=db.cursor()
 
-        cursor.execute('SELECT * FROM children')
+        cursor.execute('SELECT users.username as username,users.location as location,users.email as email,children.gender as gender,children.age as age, children.english as english FROM children JOIN users ON children.parent_id=users.id')
         rows = cursor.fetchall()
 
         db.close()
@@ -275,13 +275,13 @@ class AddChild(Resource):
         #return jsonify({"status":"success"})
         # add child form - fullname, age, gender, canSpeakEng checkbox.
         req_data = request.get_json()
-
-        _fullname = req_data.get("fullname")
-        _age = req_data.get("age")
+        _parent_id = req_data.get("userid") 
+        _fullname = req_data.get("childFullname")
+        _age = req_data.get("childAge")
         _gender = req_data.get("gender")
-        _english = req_data.get("english")
+        _english = req_data.get("speakEenglish")
 
-        new_child = Children(parent_id = current_user.get_user_id(), fullname=_fullname, age=_age, gender=_gender, english=_english)
+        new_child = Children(parent_id = _parent_id, fullname=_fullname, age=_age, gender=_gender, english=_english)
         
         new_child.save()
 
