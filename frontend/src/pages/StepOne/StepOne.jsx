@@ -6,7 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const StepOne = () => {
-  const [identity, setIdentity] = useState("");
+  const [identity, setIdentity] = useState("Parent");
   const [fullname, setFullname] = useState("");
   const [location, setLocation] = useState("");
   const [noOfChildren, setNoOfChildren] = useState(0);
@@ -17,13 +17,24 @@ const StepOne = () => {
     console.log("submitting");
     e.preventDefault();
 
+    // need to add api call to server here
+    // TODO: replace api endpoint
+    const token = localStorage.getItem('token')
+    let axiosConfig = {
+      headers: {
+        "authorization" : token
+      }
+    };
+
     axios
       .post("http://localhost:5000/api/update-user", {
         identity: identity,
         fullname: fullname,
         location: location,
         n_of_child: noOfChildren,
-      })
+        token:token,
+      }, 
+      axiosConfig)
       .then(function (response) {
         console.log(response);
         if (response.status === 200) {

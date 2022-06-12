@@ -8,9 +8,6 @@ import phoneIcon from "../../assets/images/phone.svg";
 const ProfileListItem = (props) => {
   const [showModal, setShowModal] = useState(false);
 
-  const speakEnglishText = props.child.speakEnglish
-    ? "no English"
-    : "yes English";
 
   return (
     <>
@@ -42,8 +39,7 @@ const ProfileListItem = (props) => {
             </p>
             <p>Location: {props.location}</p>
             <p>
-              Child: {props.child.gender}, {props.child.age}yo, {""}
-              {speakEnglishText}
+              Child: {props.gender}, {props.age}yo
             </p>
             <div className="contactBtns">
               <a href={`mailto:${props.email}`}>

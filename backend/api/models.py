@@ -20,7 +20,7 @@ class Users(db.Model):
     password = db.Column(db.Text())
     jwt_auth_active = db.Column(db.Boolean())
     fullname = db.Column(db.Text())
-    location = db.Column(db.Integer())
+    location = db.Column(db.Text())
     n_of_child = db.Column(db.Integer())
     identity = db.Column(db.String())
     date_joined = db.Column(db.DateTime(), default=datetime.utcnow)
@@ -62,6 +62,9 @@ class Users(db.Model):
     def set_jwt_auth_active(self, set_status):
         self.jwt_auth_active = set_status
 
+    def get_user_id(self):
+        return self.id
+
     @classmethod
     def get_by_id(cls, id):
         return cls.query.get_or_404(id)
@@ -99,10 +102,10 @@ class JWTTokenBlocklist(db.Model):
 class Children(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     parent_id = db.Column(db.Integer())
-    fullname = fullname = db.Column(db.Text())
+    fullname = db.Column(db.Text())
     age = db.Column(db.Integer())
-    gender = db.Column(db.Integer())
-    english = db.Column(db.Integer())
+    gender = db.Column(db.String())
+    english = db.Column(db.Boolean())
 
     def __repr__(self):
         return f"Expired Token: {self.jwt_token}"
