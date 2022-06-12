@@ -13,7 +13,6 @@ const StepTwo = () => {
   const navigate = useNavigate();
 
   const submitUserData = (e) => {
-    console.log("submitting");
     e.preventDefault();
 
     // need to add api call to server here
@@ -44,8 +43,8 @@ const StepTwo = () => {
       });
   };
 
-  const ChildForm = () => {
-    return (
+  return (
+    <Profile activeStep={2}>
       <form className="step1Form childForm" onSubmit={(e) => submitUserData(e)}>
         <div className="item">
           <label htmlFor="childFullname">Full name: </label>
@@ -71,7 +70,7 @@ const StepTwo = () => {
           />
         </div>
         <div className="item">
-          <label htmlFor="gender">Location: </label>
+          <label htmlFor="gender">Gender: </label>
           <input
             type="text"
             id="gender"
@@ -113,12 +112,6 @@ const StepTwo = () => {
         <button className="addChild">Add child +</button>
         <button className="button">Next</button>
       </form>
-    );
-  };
-
-  return (
-    <Profile activeStep={2}>
-      <ChildForm />
     </Profile>
   );
 };
