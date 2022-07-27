@@ -1,6 +1,9 @@
-# Druh (Demo link: https://www.loom.com/share/69e0fde9893e4762a0470176f9866a2f)
+# Druh
 
 Team project for London Athena Hackathon 2022 June 11th-12th
+
+Demo link:
+https://www.loom.com/share/69e0fde9893e4762a0470176f9866a2f
 
 Druh is a web application to connect Ukrainian child refugees in the UK.
 
