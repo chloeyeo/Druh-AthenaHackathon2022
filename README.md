@@ -1,6 +1,6 @@
 # Druh
 
-London Athena Hackathon 2022 June 11th-12th
+Team project for London Athena Hackathon 2022 June 11th-12th
 
 Druh is a web application to connect Ukrainian child refugees in the UK.
 
