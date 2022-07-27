@@ -5,7 +5,7 @@ Team project for London Athena Hackathon 2022 June 11th-12th
 Recorded Demo link:
 https://www.loom.com/share/69e0fde9893e4762a0470176f9866a2f
 
-Live Demo and Presentation (starts at 26:55, winner announced at 47:47):
+Live Demo and Presentation (Druh live presentation starts at 26:55, winner announced at 47:47):
 https://www.youtube.com/watch?v=sEw57EO8a6U
 
 Druh is a web application to connect Ukrainian child refugees in the UK.
